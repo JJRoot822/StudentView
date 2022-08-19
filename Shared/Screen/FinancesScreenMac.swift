@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FinancesScreenMac: View {
-    @State private var selection: String? = Constants.PAID_FEES_TAG
+    @AppStorage("selected-tab") private var selection: String = Constants.PAID_FEES_TAG
     
     var body: some View {
         TabView(selection: $selection) {
