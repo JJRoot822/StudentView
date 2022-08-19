@@ -14,34 +14,39 @@ struct MainNavigationMac: View {
         NavigationView {
             List {
                 NavigationLink(tag: Constants.COURSES_TAB_TAG, selection: $selection, destination: {
-                    Text("Courses")
+                    Text("Courses").toolbar { Spacer() }
                 }, label: {
                     Label("Courses", systemImage: Constants.COURSES_NAV_ICON)
                 })
+                .padding(.all, 5)
                 
                 NavigationLink(tag: Constants.HOMEWORK_TAB_TAG, selection: $selection, destination: {
-                    Text("Homework")
+                    Text("Homework").toolbar { Spacer() }
                 }, label: {
                     Label("Homework", systemImage: Constants.HOMEWORK_NAV_ICON)
                 })
+                .padding(.all, 5)
                 
                 NavigationLink(tag: Constants.TODO_LIST_TAB_TAG, selection: $selection, destination: {
-                    Text("Todo List")
+                    Text("Todo List").toolbar { Spacer() }
                 }, label: {
                     Label("Todo", systemImage: Constants.TODO_LIST_NAV_ICON)
                 })
+                .padding(.all, 5)
                 
                 NavigationLink(tag: Constants.FINANCES_TAB_TAG, selection: $selection, destination: {
                     FinancesScreen()
                 }, label: {
                     Label("Finances", systemImage: Constants.FINANCES_NAV_ICON)
                 })
+                .padding(.all, 5)
                 
                 NavigationLink(tag: Constants.SETTINGS_TAB_TAG, selection: $selection, destination: {
-                    Text("Settings")
+                    Text("Settings").toolbar { Spacer() }
                 }, label: {
                     Label("Settings", systemImage: Constants.SETTINGS_NAV_ICON)
                 })
+                .padding(.all, 5)
             }
             .listStyle(.sidebar)
         }

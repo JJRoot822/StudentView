@@ -24,28 +24,34 @@ struct PaidFeesScreen: View {
     @State private var searchTerm: String = ""
     
     var body: some View {
-        if fees.count > 0 {
-            List {
-                ForEach(filterPaidFees(searchTerm: searchTerm), id: \.title.self) { fee in
-                    HStack(alignment: .center) {
-                        Text("\(fee.feeTitle)")
-                            .bold()
-                        
-                        VStack(alignment: .trailing) {
-                            Text("Amount Charged: \(Constants.currencyFormatter.string(from: NSNumber(value: fee.amountCharged))!)")
-                                .foregroundColor(.secondary)
+        Group {
+            if fees.count > 0 {
+                List {
+                    ForEach(filterPaidFees(searchTerm: searchTerm), id: \.title.self) { fee in
+                        HStack(alignment: .center) {
+                            Text("\(fee.feeTitle)")
+                                .bold()
                             
-                            Text("Amount Paid: \(Constants.currencyFormatter.string(from: NSNumber(value: fee.amountPaid))!)")
-                                .foregroundColor(.secondary)
+                            Spacer()
+                            
+                            VStack(alignment: .trailing) {
+                                Text("Amount Charged: \(Constants.currencyFormatter.string(from: NSNumber(value: fee.amountCharged))!)")
+                                    .foregroundColor(.secondary)
+                                
+                                Text("Amount Paid: \(Constants.currencyFormatter.string(from: NSNumber(value: fee.amountPaid))!)")
+                                    .foregroundColor(.secondary)
+                            }
                         }
+                        .padding(.all, 5)
                     }
                 }
+            } else {
+                Text("No Fees to Show Right Now")
+                    .foregroundColor(.secondary)
+                    .italic()
             }
-        } else {
-            Text("No Fees to Show Right Now")
-                .foregroundColor(.secondary)
-                .italic()
         }
+        .searchable(text: $searchTerm)
     }
     
     func filterPaidFees(searchTerm: String) -> [Fee] {
