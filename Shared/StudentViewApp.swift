@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct StudentViewApp: App {
+    let persistenceController = PersistenceController.shared
+
     var body: some Scene {
-        DocumentGroup(newDocument: StudentViewDocument()) { file in
-            ContentView(document: file.$document)
+        WindowGroup {
+            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

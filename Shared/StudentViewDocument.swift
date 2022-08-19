@@ -10,20 +10,21 @@ import UniformTypeIdentifiers
 
 extension UTType {
     static var exampleText: UTType {
-        UTType(importedAs: "com.example.plain-text")
+        UTType(importedAs: "com.joshrootdev.pdf")
     }
 }
 
 struct StudentViewDocument: FileDocument {
     var text: String
 
-    init(text: String = "Hello, world!") {
+    init(text: String = "") {
         self.text = text
     }
 
     static var readableContentTypes: [UTType] { [.exampleText] }
 
     init(configuration: ReadConfiguration) throws {
+        configuration.contentType = .pdf
         guard let data = configuration.file.regularFileContents,
               let string = String(data: data, encoding: .utf8)
         else {
