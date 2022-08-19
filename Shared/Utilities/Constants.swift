@@ -5,7 +5,7 @@
 //  Created by Joshua Root on 8/17/22.
 //
 
-import Foundation
+import SwiftUI
 
 class Constants {
     static let DEFAULT_EXPORT_FILE_NAME = "StudentView_\(Date())"
@@ -30,4 +30,13 @@ class Constants {
     static let SETTINGS_NAV_ICON  = "gearshape"
     static let PAID_FEES_ICON     = "checkmark.circle"
     static let UNPAID_FEES_ICON   = "multiply.circle"
+    
+    static let currencyFormatter: NumberFormatter = {
+        let formatter: NumberFormatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        
+        return formatter
+    }()
 }
