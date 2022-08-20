@@ -12,7 +12,7 @@ struct MainNavigationMobile: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            Text("Courses")
+            CoursesScreen()
                 .tag(Constants.COURSES_TAB_TAG)
                 .tabItem {
                     Label("Courses", systemImage: Constants.COURSES_TAB_ICON)

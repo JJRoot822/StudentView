@@ -31,6 +31,15 @@ class Constants {
     static let PAID_FEES_ICON     = "checkmark.circle"
     static let UNPAID_FEES_ICON   = "multiply.circle"
     
+    static var creditsFormatter: NumberFormatter = {
+        let formatter: NumberFormatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        
+        return formatter
+    }()
+    
     static let currencyFormatter: NumberFormatter = {
         let formatter: NumberFormatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -38,5 +47,21 @@ class Constants {
         formatter.maximumFractionDigits = 2
         
         return formatter
+    }()
+    
+    static var dateFormatter: DateFormatter = {
+        var dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
+        return dateFormatter
+    }()
+    
+    static var timeFormatter: DateFormatter = {
+        let timeFormatter: DateFormatter = DateFormatter()
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .short
+        
+        return timeFormatter
     }()
 }

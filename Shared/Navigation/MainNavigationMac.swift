@@ -14,7 +14,7 @@ struct MainNavigationMac: View {
         NavigationView {
             List {
                 NavigationLink(tag: Constants.COURSES_TAB_TAG, selection: $selection, destination: {
-                    Text("Courses").toolbar { Spacer() }
+                    CoursesScreen()
                 }, label: {
                     Label("Courses", systemImage: Constants.COURSES_NAV_ICON)
                 })
