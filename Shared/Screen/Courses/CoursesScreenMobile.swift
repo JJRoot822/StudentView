@@ -76,6 +76,9 @@ struct CoursesScreenMobile: View {
                 })
                 .labelStyle(.iconOnly)
             }
+            .sheet(isPresented: $isAdding) {
+                AddCourseScreen()
+            }
         }
         #if os(iOS)
         .navigationViewStyle(.stack)

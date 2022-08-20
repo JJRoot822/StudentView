@@ -69,6 +69,9 @@ struct CoursesScreenMac: View {
             })
             .labelStyle(.iconOnly)
         }
+        .sheet(isPresented: $isAdding) {
+            AddCourseScreenMac()
+        }
     }
     
     private func onDelete(at offset: IndexSet) {
