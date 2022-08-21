@@ -55,6 +55,12 @@
 		1AFED8CB28B18FFD0065B679 /* AddCourseScreenMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8C928B18FFD0065B679 /* AddCourseScreenMobile.swift */; };
 		1AFED8CD28B190800065B679 /* AddCourseScreenMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8CC28B190800065B679 /* AddCourseScreenMac.swift */; };
 		1AFED8CE28B190800065B679 /* AddCourseScreenMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8CC28B190800065B679 /* AddCourseScreenMac.swift */; };
+		1AFED8D028B1AA5E0065B679 /* EditCourseScreenMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8CF28B1AA5E0065B679 /* EditCourseScreenMobile.swift */; };
+		1AFED8D128B1AA5E0065B679 /* EditCourseScreenMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8CF28B1AA5E0065B679 /* EditCourseScreenMobile.swift */; };
+		1AFED8D328B1AB120065B679 /* EditCourseScreenMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8D228B1AB120065B679 /* EditCourseScreenMac.swift */; };
+		1AFED8D428B1AB120065B679 /* EditCourseScreenMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8D228B1AB120065B679 /* EditCourseScreenMac.swift */; };
+		1AFED8D628B1AC160065B679 /* EditCourseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8D528B1AC160065B679 /* EditCourseScreen.swift */; };
+		1AFED8D728B1AC160065B679 /* EditCourseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFED8D528B1AC160065B679 /* EditCourseScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +93,9 @@
 		1AFED8C528B087BF0065B679 /* AddCourseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseScreen.swift; sourceTree = "<group>"; };
 		1AFED8C928B18FFD0065B679 /* AddCourseScreenMobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseScreenMobile.swift; sourceTree = "<group>"; };
 		1AFED8CC28B190800065B679 /* AddCourseScreenMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseScreenMac.swift; sourceTree = "<group>"; };
+		1AFED8CF28B1AA5E0065B679 /* EditCourseScreenMobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCourseScreenMobile.swift; sourceTree = "<group>"; };
+		1AFED8D228B1AB120065B679 /* EditCourseScreenMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCourseScreenMac.swift; sourceTree = "<group>"; };
+		1AFED8D528B1AC160065B679 /* EditCourseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCourseScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +259,9 @@
 				1AFED8C528B087BF0065B679 /* AddCourseScreen.swift */,
 				1AFED8C928B18FFD0065B679 /* AddCourseScreenMobile.swift */,
 				1AFED8CC28B190800065B679 /* AddCourseScreenMac.swift */,
+				1AFED8CF28B1AA5E0065B679 /* EditCourseScreenMobile.swift */,
+				1AFED8D228B1AB120065B679 /* EditCourseScreenMac.swift */,
+				1AFED8D528B1AC160065B679 /* EditCourseScreen.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -372,8 +384,11 @@
 				1AFED8A628AF27300065B679 /* UnpaidFeesScreen.swift in Sources */,
 				1AFED8AA28AF27310065B679 /* Constants.swift in Sources */,
 				1AFED8CD28B190800065B679 /* AddCourseScreenMac.swift in Sources */,
+				1AFED8D628B1AC160065B679 /* EditCourseScreen.swift in Sources */,
 				1AFED8AD28AF369F0065B679 /* Fee+CoreDataHelper.swift in Sources */,
+				1AFED8D328B1AB120065B679 /* EditCourseScreenMac.swift in Sources */,
 				1A657C1228ADD8C100BE4565 /* Main.xcdatamodeld in Sources */,
+				1AFED8D028B1AA5E0065B679 /* EditCourseScreenMobile.swift in Sources */,
 				1AFED8A328AF27300065B679 /* FinancesScreenMobile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,8 +417,11 @@
 				1AFED89C28AF272E0065B679 /* UnpaidFeesScreen.swift in Sources */,
 				1AFED8A028AF272E0065B679 /* Constants.swift in Sources */,
 				1AFED8CE28B190800065B679 /* AddCourseScreenMac.swift in Sources */,
+				1AFED8D728B1AC160065B679 /* EditCourseScreen.swift in Sources */,
 				1AFED8AE28AF369F0065B679 /* Fee+CoreDataHelper.swift in Sources */,
+				1AFED8D428B1AB120065B679 /* EditCourseScreenMac.swift in Sources */,
 				1A657C1328ADD8C100BE4565 /* Main.xcdatamodeld in Sources */,
+				1AFED8D128B1AA5E0065B679 /* EditCourseScreenMobile.swift in Sources */,
 				1AFED89928AF272E0065B679 /* FinancesScreenMobile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

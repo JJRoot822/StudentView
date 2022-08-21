@@ -24,6 +24,7 @@ struct CoursesScreenMobile: View {
     @State private var searchTerm: String = ""
     @State private var isEditing: Bool = false
     @State private var isAdding: Bool = false
+    @State private var id: UUID = UUID()
     
     var editButton: some View {
         Button(action: {
@@ -53,6 +54,11 @@ struct CoursesScreenMobile: View {
                                     })
                                     .tint(.red)
                                 }
+                                .sheet(isPresented: $isEditing, onDismiss: {
+                                    id = UUID()
+                                }, content: {
+                                    EditCourseScreenMobile(course: course)
+                                })
                         }
                         .onDelete(perform: onDelete)
                     }
@@ -62,6 +68,7 @@ struct CoursesScreenMobile: View {
                         .italic()
                 }
             }
+            .id(id)
             .navigationTitle(Text("Courses"))
             .searchable(text: $searchTerm, prompt: Text("Search Courses"))
             .toolbar {

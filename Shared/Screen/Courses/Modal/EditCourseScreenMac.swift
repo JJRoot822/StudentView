@@ -1,5 +1,5 @@
 //
-//  AddCourseScreenMac.swift
+//  EditCourseScreenMac.swift
 //  StudentView
 //
 //  Created by Joshua Root on 8/20/22.
@@ -7,18 +7,33 @@
 
 import SwiftUI
 
-struct AddCourseScreenMac: View {
+struct EditCourseScreenMac: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) var dismiss
     
-    @State private var name: String = ""
-    @State private var instructorFirstName: String = ""
-    @State private var instructorLastName: String = ""
-    @State private var startDate: Date = Date()
-    @State private var endDate: Date = Date()
-    @State private var startTime: Date = Date()
-    @State private var endTime: Date = Date()
-    @State private var credits: Double = 0
+    @State private var name: String
+    @State private var instructorFirstName: String
+    @State private var instructorLastName: String
+    @State private var startDate: Date
+    @State private var endDate: Date
+    @State private var startTime: Date
+    @State private var endTime: Date
+    @State private var credits: Double
+    
+    var course: Course
+    
+    init(course: Course) {
+        self.course = course
+        
+        _name = State(wrappedValue: course.courseName)
+        _instructorFirstName = State(wrappedValue: course.courseInstructorFirstName)
+        _instructorLastName = State(wrappedValue: course.courseInstructorLastName)
+        _startDate = State(wrappedValue: course.courseStartDate)
+        _endDate = State(wrappedValue: course.courseEndDate)
+        _startTime = State(wrappedValue: course.courseStartTime)
+        _endTime = State(wrappedValue: course.courseEndTime)
+        _credits = State(wrappedValue: course.credits)
+    }
     
     var body: some View {
         Form {
@@ -41,7 +56,7 @@ struct AddCourseScreenMac: View {
             })
             
             HStack {
-                Button("Add Course", action: addCourse)
+                Button("Save Course", action: editCourse)
                 
                 Button("Cancel") {
                     dismiss()
@@ -50,16 +65,15 @@ struct AddCourseScreenMac: View {
         }
     }
     
-    private func addCourse() {
-        let course = Course(context: viewContext)
+    private func editCourse() {
         course.name = name
         course.instructorFirstName = instructorFirstName
-        course.instructorLastName  = instructorLastName
-        course.credits             = credits
-        course.startTime           = startTime
-        course.endTime             = endTime
-        course.startDate           = startDate
-        course.endDate             = endDate
+        course.instructorLastName = instructorLastName
+        course.startDate = startDate
+        course.endDate = endDate
+        course.startTime = startTime
+        course.endTime = endTime
+        course.credits = credits
         
         CoreDataUtil.save(context: viewContext)
         

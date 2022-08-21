@@ -25,6 +25,7 @@ struct CoursesScreenMac: View {
     @State private var searchTerm: String = ""
     @State private var isEditing: Bool = false
     @State private var isAdding: Bool = false
+    @State private var id: UUID = UUID()
     
     var editButton: some View {
         Button(action: {
@@ -51,6 +52,11 @@ struct CoursesScreenMac: View {
                                     Label("Delete Course", systemImage: "trash")
                                 })
                             }
+                            .sheet(isPresented: $isEditing, onDismiss: {
+                                id = UUID()
+                            }, content: {
+                                EditCourseScreen(course: course)
+                            })
                     }
                     .onDelete(perform: onDelete)
                 }
@@ -60,6 +66,7 @@ struct CoursesScreenMac: View {
                     .italic()
             }
         }
+        .id(id)
         .searchable(text: $searchTerm, prompt: Text("Search Courses"))
         .toolbar {
             Button(action: {
@@ -69,9 +76,11 @@ struct CoursesScreenMac: View {
             })
             .labelStyle(.iconOnly)
         }
-        .sheet(isPresented: $isAdding) {
-            AddCourseScreenMac()
-        }
+        .sheet(isPresented: $isAdding, onDismiss: {
+            id = UUID()
+        }, content: {
+            AddCourseScreen()
+        })
     }
     
     private func onDelete(at offset: IndexSet) {

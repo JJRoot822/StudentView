@@ -77,5 +77,7 @@ struct AddCourseScreenMobile: View {
         course.endDate             = endDate
         
         CoreDataUtil.save(context: viewContext)
+        
+        dismiss()
     }
 }
