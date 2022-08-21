@@ -12,11 +12,11 @@ struct CourseCell: View {
     
     var body: some View {
         HStack {
-            VStack {
+            VStack(alignment: .leading) {
                 Text("\(course.courseName)")
                     .bold()
                 
-                Text("\(course.startTime == nil && course.endTime == nil ? "Web" : Constants.timeFormatter.string(from: course.courseStartTime)) - \(Constants.timeFormatter.string(from: course.courseEndTime))")
+                Text("\(Constants.timeFormatter.string(from: course.courseStartTime)) - \(Constants.timeFormatter.string(from: course.courseEndTime))")
                     .foregroundColor(.secondary)
                 
                 Text("\(Constants.dateFormatter.string(from: course.courseStartDate)) - \(Constants.dateFormatter.string(from: course.courseEndDate))")
@@ -25,6 +25,8 @@ struct CourseCell: View {
                 Text("\(course.courseInstructorLastName), \(course.courseInstructorFirstName)")
                     .foregroundColor(.secondary)
             }
+            
+            Spacer()
             
             Text("\(Constants.creditsFormatter.string(from: NSNumber(value: course.credits))!) Credits")
                 .bold()

@@ -43,11 +43,23 @@ struct CoursesScreenMobile: View {
                         ForEach(filterCourses(), id: \.name.self) { course in
                             CourseCell(course: course)
                                 .swipeActions(edge: .leading, allowsFullSwipe: false) { editButton }
+                                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                    Button(action: {
+                                        withAnimation {
+                                            CoreDataUtil.delete(object: course, context: viewContext)
+                                        }
+                                    }, label: {
+                                        Label("Delete", systemImage: "trash")
+                                    })
+                                    .tint(.red)
+                                }
                                 .contextMenu {
                                     editButton
                                     
                                     Button(action: {
-                                        CoreDataUtil.delete(object: course, context: viewContext)
+                                        withAnimation {
+                                            CoreDataUtil.delete(object: course, context: viewContext)
+                                        }
                                     }, label: {
                                         Label("Delete Course", systemImage: "trash")
                                             .foregroundColor(.red)
@@ -60,7 +72,6 @@ struct CoursesScreenMobile: View {
                                     EditCourseScreenMobile(course: course)
                                 })
                         }
-                        .onDelete(perform: onDelete)
                     }
                 } else {
                     Text("No Courses to Show Right Now")
@@ -72,10 +83,6 @@ struct CoursesScreenMobile: View {
             .navigationTitle(Text("Courses"))
             .searchable(text: $searchTerm, prompt: Text("Search Courses"))
             .toolbar {
-                #if os(iOS)
-                EditButton()
-                #endif
-                
                 Button(action: {
                     isAdding.toggle()
                 }, label: {
@@ -103,12 +110,16 @@ struct CoursesScreenMobile: View {
     }
     
     private func filterCourses() -> [Course] {
-        return courses.filter { course in
-            let nameContainsTerm: Bool = course.courseName.contains(searchTerm)
-            let firstNameContainsTerm: Bool = course.courseInstructorFirstName.contains(searchTerm)
-            let lastNameContainsTerm: Bool = course.courseInstructorLastName.contains(searchTerm)
-            
-            return nameContainsTerm || firstNameContainsTerm || lastNameContainsTerm
+        if searchTerm.isEmpty {
+            return courses.map { $0 }
+        } else {
+            return courses.filter { course in
+                let nameContainsTerm: Bool = course.courseName.contains(searchTerm)
+                let firstNameContainsTerm: Bool = course.courseInstructorFirstName.contains(searchTerm)
+                let lastNameContainsTerm: Bool = course.courseInstructorLastName.contains(searchTerm)
+                
+                return nameContainsTerm || firstNameContainsTerm || lastNameContainsTerm
+            }
         }
     }
 }

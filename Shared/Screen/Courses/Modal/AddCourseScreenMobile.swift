@@ -33,17 +33,13 @@ struct AddCourseScreenMobile: View {
                 DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
                 DatePicker("End Date", selection: $endDate, displayedComponents: .date)
                 
-                HStack {
-                    Text("\(Constants.creditsFormatter.string(from: NSNumber(value: credits))!)")
-                    
-                    Stepper("\(Constants.creditsFormatter.string(from: NSNumber(value: credits))!)", onIncrement: {
-                        credits += 0.1
-                    }, onDecrement: {
-                        if credits > 0 {
-                            credits -= 0.1
-                        }
-                    })
-                }
+                Stepper("\(Constants.creditsFormatter.string(from: NSNumber(value: credits))!) Credits", onIncrement: {
+                    credits += 0.1
+                }, onDecrement: {
+                    if credits > 0 {
+                        credits -= 0.1
+                    }
+                })
             }
             .navigationTitle(Text("Add Course"))
             #if os(iOS)

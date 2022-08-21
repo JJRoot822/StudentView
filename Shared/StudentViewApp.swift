@@ -14,6 +14,9 @@ struct StudentViewApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            #if os(macOS)
+                .frame(width: 1200, height: 800)
+            #endif
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-
-
-
-
 struct CoursesScreen: View {
     var body: some View {
         #if os(iOS)

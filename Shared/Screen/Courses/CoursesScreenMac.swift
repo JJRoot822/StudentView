@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct CoursesScreenMac: View {
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -31,42 +30,51 @@ struct CoursesScreenMac: View {
         Button(action: {
             isEditing.toggle()
         }, label: {
-            Label("Edit Course", systemImage: "pencil")
+            Label("Edit Course", systemImage: "pencil4")
         })
         .tint(.blue)
     }
     
     var body: some View {
         Group {
-            if courses.count != 0 {
+            if courses.count > 0 {
                 List {
                     ForEach(filterCourses(), id: \.name.self) { course in
                         CourseCell(course: course)
                             .swipeActions(edge: .leading, allowsFullSwipe: false) { editButton }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(action: {
+                                    withAnimation {
+                                        CoreDataUtil.delete(object: course, context: viewContext)
+                                    }
+                                }, label: {
+                                    Label("Delete", systemImage: "trash")
+                                })
+                                .tint(.red)
+                            }
                             .contextMenu {
                                 editButton
                                 
                                 Button(action: {
-                                    CoreDataUtil.delete(object: course, context: viewContext)
+                                    withAnimation {
+                                        CoreDataUtil.delete(object: course, context: viewContext)
+                                    }
                                 }, label: {
                                     Label("Delete Course", systemImage: "trash")
+                                        .foregroundColor(.red)
                                 })
+                                .tint(.red)
                             }
                             .sheet(isPresented: $isEditing, onDismiss: {
                                 id = UUID()
                             }, content: {
                                 EditCourseScreen(course: course)
+                                    .padding(.all, 50)
                             })
                     }
-                    .onDelete(perform: onDelete)
                 }
-            } else {
-                Text("No Courses to Show Right Now")
-                    .foregroundColor(.secondary)
-                    .italic()
             }
         }
-        .id(id)
         .searchable(text: $searchTerm, prompt: Text("Search Courses"))
         .toolbar {
             Button(action: {
@@ -80,26 +88,21 @@ struct CoursesScreenMac: View {
             id = UUID()
         }, content: {
             AddCourseScreen()
+                .padding(.all, 50)
         })
     }
     
-    private func onDelete(at offset: IndexSet) {
-        withAnimation {
-            offset.map {
-                return courses[$0]
-            }.forEach {
-                CoreDataUtil.delete(object: $0, context: viewContext)
-            }
-        }
-    }
-    
     private func filterCourses() -> [Course] {
-        return courses.filter { course in
-            let nameContainsTerm: Bool = course.courseName.contains(searchTerm)
-            let firstNameContainsTerm: Bool = course.courseInstructorFirstName.contains(searchTerm)
-            let lastNameContainsTerm: Bool = course.courseInstructorLastName.contains(searchTerm)
-            
-            return nameContainsTerm || firstNameContainsTerm || lastNameContainsTerm
+        if searchTerm.isEmpty {
+            return courses.map { $0 }
+        } else {
+            return courses.filter { course in
+                let nameContainsTerm: Bool = course.courseName.contains(searchTerm)
+                let firstNameContainsTerm: Bool = course.courseInstructorFirstName.contains(searchTerm)
+                let lastNameContainsTerm: Bool = course.courseInstructorLastName.contains(searchTerm)
+                
+                return nameContainsTerm || firstNameContainsTerm || lastNameContainsTerm
+            }
         }
     }
 }

@@ -56,7 +56,7 @@ struct EditCourseScreenMobile: View {
                     }
                 })
             }
-            .navigationTitle(Text("Add Course"))
+            .navigationTitle(Text("Edit Course"))
             #if os(iOS)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -76,7 +76,7 @@ struct EditCourseScreenMobile: View {
         #endif
     }
     
-    private func editScreen() {
+    private func editCourse() {
         course.name = name
         course.instructorFirstName = instructorFirstName
         course.instructorLastName = instructorLastName
